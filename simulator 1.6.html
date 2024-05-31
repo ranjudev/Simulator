@@ -4,9 +4,13 @@
       html,
       body {
         margin: 0;
+       /* background-image: url('ev charger.jpg');
+        height: 100vh;
+        background-size: cover;
+        background-position: center; */
       }
       body {
-        background: grey;
+        background: #494D5F;
         color: white;
         font-family: Arial;
         /* height: 100vh !important; */
@@ -36,7 +40,7 @@
       }
 
       button {
-        background: #ff5a60;
+        background: #369;
         color: #fff;
         padding: 5px 0;
         border: none;
@@ -44,7 +48,7 @@
       }
 
       ul {
-        background: grey;
+        background: #494D5F;
         color: #eee;
       }
 
@@ -78,7 +82,6 @@
         animation-fill-mode: both;
         font-size: 35px;
         padding: 0;
-        margin: 0;
       }
       .subTitle {
         text-align: center;
@@ -136,9 +139,10 @@
   </head>
 
   <body>
-   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <div class="wrapper">
-      <h1 class="title">EV SIMULATOR</h1>
+        <h1 class="title">EV SIMULATOR</h1>  
+    <!--  <p style="background-image: url('ev logo.jpg');"></p>-->
       <p class="subTitle">Simple OCPP 1.6 Chargebox Simulator</p>
       <select style="display: none">
         <option value="">OCPP-J1.6</option>
@@ -162,7 +166,8 @@
           <label>Connector uid</label><br>
           <input id="CUID" type="text" placeholder="Connector uid" value="1" /><br>
           <h2>Actions</h2>
-          <button id="connect">Connect</button>   <button id="send">Authorize</button><br>
+          <button id="connect"><i class="fa-solid fa-link"></i> Connect</button>   
+          <button id="send">Authorize</button><br>
           <button id="start">Start Transaction</button>
           <button id="stop">Stop Transaction</button><br>
           <button id="heartbeat">Heartbeat</button><br>
@@ -222,7 +227,7 @@
           <button id="mvp">Send Meter Values loop</button>
           <button id="status">Status Notification</button><br>
           <button id="data_transfer">Data Tranfer</button>
-          <button id="downloadbtn">Download</button>
+          <button id="downloadbtn"><i class="fa-solid fa-download"></i> Download</button>
         </div>
         <div class="console">
           <div>
@@ -281,7 +286,7 @@
             $("#yellow").show();
             BootNotification();
 
-            $("#connect").text("Disconnect").css("background", "green");
+            $("#connect").html('<i class="fa-solid fa-link-slash"></i> Disconnect').css("background", "green",);
           };
 
           _websocket.onmessage = function (msg) {
@@ -375,7 +380,7 @@
           };
 
           _websocket.onclose = function (evt) {
-            $("#connect").text("Connect").css("background", "#ff5a60");
+            $("#connect").html('<i class="fa-solid fa-link"></i> Connect').css("background", "#369");
             if (evt.code == 3001) {
               logMsg("ws closed");
               _websocket = null;
